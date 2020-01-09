@@ -1,0 +1,20 @@
+apply plugin: 'java-library'
+
+apply plugin: 'kotlin'
+
+dependencies {
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation "com.squareup.retrofit2:retrofit:2.6.2"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.6.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.6.2"
+
+    testImplementation 'junit:junit:4.12'
+
+    implementation project (':domain')
+}
+
+sourceCompatibility = "7"
+targetCompatibility = "7"
