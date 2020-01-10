@@ -11,6 +11,8 @@ import io.reactivex.Single
 import kotlinx.android.synthetic.main.book_return_fragment.*
 import ru.apliter.data.entities.DataBook
 import ru.apliter.evotor_digital_library.R
+import ru.apliter.evotor_digital_library.R.drawable.*
+import ru.apliter.evotor_digital_library.R.string.*
 import java.util.concurrent.TimeUnit
 
 class BookReturnFragment : Fragment(R.layout.book_return_fragment) {
@@ -24,7 +26,7 @@ class BookReturnFragment : Fragment(R.layout.book_return_fragment) {
         observeViewModel(viewModel, this)
         bookId = arguments?.getString("BOOK_ID")
         bookId?.let {
-            label_return_status.text = "Запрашиваю книгу"
+            label_return_status.text = getString(get_book_request)
             viewModel.startGettingBook(it)
         } ?: run {
             activity?.onBackPressed()
@@ -43,16 +45,16 @@ class BookReturnFragment : Fragment(R.layout.book_return_fragment) {
         viewModel.getBookObservable()
             .observe(lifeCycleOwner, Observer {
                 book = it
-                label_return_status.text = "Возвращаю книгу"
+                label_return_status.text = getString(return_book_request)
                 viewModel.returnBook()
             })
 
 
         viewModel.getBookErrorObservable()
             .observe(lifeCycleOwner, Observer {
-                label_return_status.text = "Ошибка!"
+                label_return_status.text = getString(error_label)
                 label_error.text = it.cause.toString()
-                ok_image.setImageResource(R.drawable.ic_error)
+                ok_image.setImageResource(ic_error)
                 return_progress.visibility = View.GONE
                 ok_image.visibility = View.VISIBLE
                 waitAndExit(4)
@@ -62,8 +64,7 @@ class BookReturnFragment : Fragment(R.layout.book_return_fragment) {
             .observe(lifeCycleOwner, Observer {
                 if (it == "ok") {
                     return_progress.visibility = View.GONE
-                    label_return_status.text =
-                        "Спасибо, что вернули книгу.\n Оцените, понравилась\nли она вам?"
+                    label_return_status.text = getString(success_return_book)
                     ok_image.visibility = View.VISIBLE
                     rate_layout.visibility = View.VISIBLE
                     waitAndExit(15)
@@ -86,33 +87,33 @@ class BookReturnFragment : Fragment(R.layout.book_return_fragment) {
         var newRate = 0
         when (it) {
             rate_one -> {
-                rate_one.setImageResource(R.drawable.ic_star)
+                rate_one.setImageResource(ic_star)
                 newRate = 1
             }
             rate_two -> {
-                rate_one.setImageResource(R.drawable.ic_star)
-                rate_two.setImageResource(R.drawable.ic_star)
+                rate_one.setImageResource(ic_star)
+                rate_two.setImageResource(ic_star)
                 newRate = 2
             }
             rate_three -> {
-                rate_one.setImageResource(R.drawable.ic_star)
-                rate_two.setImageResource(R.drawable.ic_star)
-                rate_three.setImageResource(R.drawable.ic_star)
+                rate_one.setImageResource(ic_star)
+                rate_two.setImageResource(ic_star)
+                rate_three.setImageResource(ic_star)
                 newRate = 3
             }
             rate_four -> {
-                rate_one.setImageResource(R.drawable.ic_star)
-                rate_two.setImageResource(R.drawable.ic_star)
-                rate_three.setImageResource(R.drawable.ic_star)
-                rate_four.setImageResource(R.drawable.ic_star)
+                rate_one.setImageResource(ic_star)
+                rate_two.setImageResource(ic_star)
+                rate_three.setImageResource(ic_star)
+                rate_four.setImageResource(ic_star)
                 newRate = 4
             }
             rate_five -> {
-                rate_one.setImageResource(R.drawable.ic_star)
-                rate_two.setImageResource(R.drawable.ic_star)
-                rate_three.setImageResource(R.drawable.ic_star)
-                rate_four.setImageResource(R.drawable.ic_star)
-                rate_five.setImageResource(R.drawable.ic_star)
+                rate_one.setImageResource(ic_star)
+                rate_two.setImageResource(ic_star)
+                rate_three.setImageResource(ic_star)
+                rate_four.setImageResource(ic_star)
+                rate_five.setImageResource(ic_star)
                 newRate = 5
             }
         }
@@ -124,7 +125,7 @@ class BookReturnFragment : Fragment(R.layout.book_return_fragment) {
 
     private fun exit() {
         activity?.supportFragmentManager?.apply {
-            fragments.let {fragments->
+            fragments.let { fragments ->
                 if (fragments.contains(this@BookReturnFragment)) {
                     this.beginTransaction().remove(this@BookReturnFragment).commit()
                     this.popBackStack()

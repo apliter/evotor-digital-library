@@ -37,7 +37,7 @@ class RetrofitClientImpl : RetrofitClientApi<Retrofit> {
     fun getBookApi(): BookApi = getRetrofitClient().create(BookApi::class.java)
 
     override fun getRetrofitClient(): Retrofit = Retrofit.Builder().apply {
-        baseUrl("base_url")
+        baseUrl("base_URL")
         addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         addConverterFactory(GsonConverterFactory.create(GsonBuilder().setDateFormat("yyyy-MM-dd").create()))
     }.build()

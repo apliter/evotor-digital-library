@@ -1,8 +1,7 @@
 <resources>
 
-    <!-- Base application theme. -->
+
     <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
-        <!-- Customize your theme here. -->
         <item name="android:editTextColor">@color/colorPrimaryDark</item>
         <item name="android:textColorHint">@color/actionButtonColorLightText</item>
     </style>

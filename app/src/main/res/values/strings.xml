@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Библиотека</string>
+    <string name="get_book_request">Запрашиваю книгу</string>
+    <string name="error_label">Ошибка!</string>
+    <string name="rent_book_request">Бронирую книгу</string>
+    <string name="success_rent_book">Готово!\nВы взяли книгу до %1$s\nПриятного чтения!</string>
+    <string name="return_book_request">Возвращаю книгу</string>
+    <string name="success_return_book">Спасибо, что вернули книгу.\\n Оцените, понравилась\\nли она вам?</string>
 </resources>

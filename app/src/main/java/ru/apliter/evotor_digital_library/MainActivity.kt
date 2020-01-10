@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // Да, так можно - особенность задачи =) Да, возможно выстрел в ногу - если добавиться еще какой-нибудь диалог \ дополнительный шаг, то это придется убрать =)
     override fun onBackPressed() {
         super.onBackPressed()
         supportFragmentManager.beginTransaction()

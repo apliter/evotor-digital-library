@@ -35,23 +35,25 @@ class BookItemFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         observeViewModel(viewModel, this)
         bookId = arguments?.getString("BOOK_ID")
+
         bookId?.let {
             viewModel.startGettingBook(it)
         } ?: run {
             activity?.onBackPressed()
         }
+
         book_rent_btn.setOnClickListener {
-            rentBook()
+            rentBook(bookId)
         }
         book_return_btn.setOnClickListener {
-            returnBook()
+            returnBook(bookId)
         }
         book_prolong_btn.setOnClickListener {
-            prolongBook()
+            prolongBook(bookId)
         }
     }
 
-    private fun prolongBook() {
+    private fun prolongBook(bookId: String?) {
         val rentFragment = BookRentFragment()
         val args = Bundle()
         args.putString("BOOK_ID", bookId)
@@ -64,7 +66,7 @@ class BookItemFragment : Fragment() {
         }
     }
 
-    private fun returnBook() {
+    private fun returnBook(bookId: String?) {
         val returnFragment = BookReturnFragment()
         val args = Bundle()
         args.putString("BOOK_ID", bookId)
@@ -74,7 +76,7 @@ class BookItemFragment : Fragment() {
             ?.remove(this)?.commit()
     }
 
-    private fun rentBook() {
+    private fun rentBook(bookId: String?) {
         val rentFragment = BookRentFragment()
         val args = Bundle()
         args.putString("BOOK_ID", bookId)
@@ -151,6 +153,8 @@ class BookItemFragment : Fragment() {
             })
     }
 
+
+    // боль и страдание. Иначе я не придумал =(
     private fun setRate(rate: Int) {
         when (rate) {
             1 -> {

@@ -11,6 +11,8 @@ import io.reactivex.Single
 import kotlinx.android.synthetic.main.book_rent_fragment.*
 import ru.apliter.data.entities.DataBook
 import ru.apliter.evotor_digital_library.R
+import ru.apliter.evotor_digital_library.R.drawable.*
+import ru.apliter.evotor_digital_library.R.string.*
 import ru.evotor.devices.commons.DeviceServiceConnector
 import java.util.concurrent.TimeUnit
 
@@ -25,7 +27,7 @@ class BookRentFragment : Fragment(R.layout.book_rent_fragment) {
         observeViewModel(viewModel, this)
         bookId = arguments?.getString("BOOK_ID")
         bookId?.let {
-            label_rent_status.text = "Запрашиваю книгу"
+            label_rent_status.text = getString(get_book_request)
             viewModel.startGettingBook(it)
         } ?: run {
             activity?.onBackPressed()
@@ -36,9 +38,9 @@ class BookRentFragment : Fragment(R.layout.book_rent_fragment) {
     private fun observeViewModel(viewModel: MainViewModel, lifeCycleOwner: LifecycleOwner) {
         viewModel.getBookErrorObservable()
             .observe(lifeCycleOwner, Observer {
-                label_rent_status.text = "Ошибка!"
+                label_rent_status.text = getString(error_label)
                 label_error.text = it.cause.toString()
-                ok_image.setImageResource(R.drawable.ic_error)
+                ok_image.setImageResource(ic_error)
                 rent_progress.visibility = View.GONE
                 ok_image.visibility = View.VISIBLE
                 waitAndExit(4)
@@ -46,7 +48,7 @@ class BookRentFragment : Fragment(R.layout.book_rent_fragment) {
 
         viewModel.getBookObservable()
             .observe(lifeCycleOwner, Observer {
-                label_rent_status.text = "Бронирую книгу"
+                label_rent_status.text = getString(rent_book_request)
                 book = it
                 viewModel.rentBook()
             })
@@ -54,7 +56,7 @@ class BookRentFragment : Fragment(R.layout.book_rent_fragment) {
         viewModel.getBookRentObservable()
             .observe(lifeCycleOwner, Observer {
                 rent_progress.visibility = View.GONE
-                label_rent_status.text = "Готово!\nВы взяли книгу до $it\nПриятного чтения!"
+                label_rent_status.text = getString(success_rent_book, it)
                 ok_image.visibility = View.VISIBLE
                 waitAndExit(3)
             })

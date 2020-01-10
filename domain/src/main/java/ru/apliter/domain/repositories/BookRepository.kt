@@ -16,7 +16,5 @@ interface BookRepository {
 
     fun setBookRate(uuid: String, rate: Int): Single<Any>
 
-//    fun prolongBook(uuid: String, returnDate: Date): Single<Any>
-
     fun returnBook(uuid: String): Single<Any>
 }

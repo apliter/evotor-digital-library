@@ -5,7 +5,7 @@ import ru.apliter.domain.entities.DomainBook
 
 object BookConverter {
 
-    fun DataBookToDomainBook(dataBook: DataBook) = DomainBook(
+    fun dataBookToDomainBook(dataBook: DataBook) = DomainBook(
         dataBook.bookId,
         dataBook.title,
         dataBook.author,
@@ -18,7 +18,7 @@ object BookConverter {
         dataBook.uri
     )
 
-    fun DomainBookToDataBook(domainBook: DomainBook) = DataBook(
+    fun domainBookToDataBook(domainBook: DomainBook) = DataBook(
         domainBook.bookId,
         domainBook.title,
         domainBook.author,

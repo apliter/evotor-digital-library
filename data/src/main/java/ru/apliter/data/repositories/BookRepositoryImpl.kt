@@ -12,11 +12,11 @@ class BookRepositoryImpl(private val bookApi: RetrofitClientImpl.BookApi) : Book
 
     override fun getAllBooks(): Observable<List<DomainBook>> =
         bookApi.getAllBooks().map { networkBooks ->
-            networkBooks.map { BookConverter.DataBookToDomainBook(it) }
+            networkBooks.map { BookConverter.dataBookToDomainBook(it) }
         }
 
     override fun getBook(uuid: String): Single<DomainBook> =
-        bookApi.getBook(uuid).map { BookConverter.DataBookToDomainBook(it) }
+        bookApi.getBook(uuid).map { BookConverter.dataBookToDomainBook(it) }
 
     override fun rentBook(uuid: String, returnDate: Date):Single<Any> =
         bookApi.rentBook(uuid,returnDate.time.toString())

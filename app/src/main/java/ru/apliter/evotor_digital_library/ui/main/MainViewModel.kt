@@ -48,7 +48,7 @@ class MainViewModel : ViewModel() {
                 }
                 .subscribe({ domainBooks ->
                     this.bookListLiveData.value =
-                        domainBooks.map { BookConverter.DomainBookToDataBook(it) }
+                        domainBooks.map { BookConverter.domainBookToDataBook(it) }
                 }, { error ->
                     this.errorGetBooksData.value = error
                     error.printStackTrace()
@@ -67,7 +67,7 @@ class MainViewModel : ViewModel() {
                     loading.value = true
                 }
                 .subscribe({ domainBook ->
-                    this.bookLiveData.value = BookConverter.DomainBookToDataBook(domainBook)
+                    this.bookLiveData.value = BookConverter.domainBookToDataBook(domainBook)
                     loading.value = false
                 }, { error ->
                     errorGetBookData.value = error
@@ -217,6 +217,4 @@ class MainViewModel : ViewModel() {
 
     fun getBookByBarcode(barcode: String): DataBook? =
         bookListLiveData.value?.find { dataBook -> dataBook.barcode == barcode }
-
-
 }
