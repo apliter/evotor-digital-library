@@ -1,4 +1,4 @@
-package ru.apliter.evotor_digital_library.ui.main
+package ru.apliter.evotor_digital_library.ui.fragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -13,6 +13,7 @@ import ru.apliter.data.entities.DataBook
 import ru.apliter.evotor_digital_library.R
 import ru.apliter.evotor_digital_library.R.drawable.ic_error
 import ru.apliter.evotor_digital_library.R.string.*
+import ru.apliter.evotor_digital_library.ui.MainViewModel
 import ru.evotor.devices.commons.DeviceServiceConnector
 import java.util.concurrent.TimeUnit
 

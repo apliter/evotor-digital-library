@@ -9,7 +9,7 @@
     android:focusableInTouchMode="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.BookListFragment">
+    tools:context=".ui.fragments.BookListFragment">
 
     <ProgressBar
         android:id="@+id/loading_list_pb"

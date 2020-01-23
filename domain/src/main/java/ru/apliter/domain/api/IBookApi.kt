@@ -1,6 +1,6 @@
 package ru.apliter.domain.api
 
-interface BookApi<T> {
+interface IBookApi<T> {
 
     fun getBookApi(): T
 

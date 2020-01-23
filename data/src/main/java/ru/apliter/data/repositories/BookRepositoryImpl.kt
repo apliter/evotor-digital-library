@@ -5,10 +5,10 @@ import io.reactivex.Single
 import ru.apliter.data.api.IRetrofitApi
 import ru.apliter.data.common.BookConverter
 import ru.apliter.domain.entities.DomainBook
-import ru.apliter.domain.repositories.BookRepository
+import ru.apliter.domain.repositories.IBookRepository
 import java.util.*
 
-class BookRepositoryImpl(private val bookApi: IRetrofitApi) : BookRepository {
+class BookRepositoryImpl(private val bookApi: IRetrofitApi) : IBookRepository {
 
 
     override fun getAllBooks(): Observable<List<DomainBook>> =

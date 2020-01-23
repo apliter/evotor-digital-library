@@ -1,4 +1,4 @@
-package ru.apliter.evotor_digital_library.ui.main
+package ru.apliter.evotor_digital_library.ui.fragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -14,6 +14,7 @@ import ru.apliter.evotor_digital_library.R
 import ru.apliter.evotor_digital_library.R.drawable.ic_error
 import ru.apliter.evotor_digital_library.R.drawable.ic_star
 import ru.apliter.evotor_digital_library.R.string.*
+import ru.apliter.evotor_digital_library.ui.MainViewModel
 import java.util.concurrent.TimeUnit
 
 class BookReturnFragment : Fragment(R.layout.book_return_fragment) {

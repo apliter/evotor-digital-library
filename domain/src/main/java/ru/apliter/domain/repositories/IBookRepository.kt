@@ -6,7 +6,7 @@ import ru.apliter.domain.entities.DomainBook
 import java.util.*
 
 
-interface BookRepository {
+interface IBookRepository {
 
     fun getAllBooks(): Observable<List<DomainBook>>
 

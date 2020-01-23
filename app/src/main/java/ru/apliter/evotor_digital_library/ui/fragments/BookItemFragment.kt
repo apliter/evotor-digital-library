@@ -1,4 +1,4 @@
-package ru.apliter.evotor_digital_library.ui.main
+package ru.apliter.evotor_digital_library.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,6 +12,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.book_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.apliter.evotor_digital_library.R
+import ru.apliter.evotor_digital_library.ui.MainViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 

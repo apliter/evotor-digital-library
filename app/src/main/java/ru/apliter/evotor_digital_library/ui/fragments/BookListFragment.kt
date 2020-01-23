@@ -1,4 +1,4 @@
-package ru.apliter.evotor_digital_library.ui.main
+package ru.apliter.evotor_digital_library.ui.fragments
 
 import android.content.Context
 import android.content.IntentFilter
@@ -17,6 +17,7 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.book_list_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.apliter.evotor_digital_library.R
+import ru.apliter.evotor_digital_library.ui.MainViewModel
 import ru.apliter.evotor_digital_library.ui.rv.BookAdapter
 import ru.evotor.framework.device.scanner.event.BarcodeReceivedEvent
 import ru.evotor.framework.device.scanner.event.handler.receiver.ScannerBroadcastReceiver

@@ -4,10 +4,10 @@ import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import ru.apliter.domain.api.RetrofitClient
+import ru.apliter.domain.api.IRetrofitClient
 
 
-class RetrofitClientImpl : RetrofitClient<Retrofit> {
+class RetrofitClientImpl : IRetrofitClient<Retrofit> {
 
     override fun getRetrofitClient(): Retrofit = Retrofit.Builder().apply {
         baseUrl("base_url")

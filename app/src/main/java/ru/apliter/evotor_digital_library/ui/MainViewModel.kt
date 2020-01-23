@@ -1,4 +1,4 @@
-package ru.apliter.evotor_digital_library.ui.main
+package ru.apliter.evotor_digital_library.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,7 +8,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import ru.apliter.data.common.BookConverter
 import ru.apliter.data.entities.DataBook
-import ru.apliter.domain.repositories.BookRepository
+import ru.apliter.domain.repositories.IBookRepository
 import ru.evotor.devices.commons.DeviceServiceConnector
 import ru.evotor.devices.commons.printer.PrinterDocument
 import ru.evotor.devices.commons.printer.printable.PrintableBarcode
@@ -18,7 +18,7 @@ import java.util.*
 
 
 class MainViewModel(
-    private val bookRepository: BookRepository
+    private val bookRepository: IBookRepository
 ) : ViewModel() {
 
     private val bookListLiveData = MutableLiveData<List<DataBook>>()

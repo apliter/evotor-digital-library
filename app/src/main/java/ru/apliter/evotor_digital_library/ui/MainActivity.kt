@@ -3,7 +3,7 @@ package ru.apliter.evotor_digital_library.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import ru.apliter.evotor_digital_library.R
-import ru.apliter.evotor_digital_library.ui.main.BookListFragment
+import ru.apliter.evotor_digital_library.ui.fragments.BookListFragment
 
 class MainActivity : AppCompatActivity() {
 
