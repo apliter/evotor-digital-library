@@ -1,7 +1,7 @@
 package ru.apliter.domain.api
 
 
-interface RetrofitClientApi<T> {
+interface RetrofitClient<T> {
 
     fun getRetrofitClient(): T
 

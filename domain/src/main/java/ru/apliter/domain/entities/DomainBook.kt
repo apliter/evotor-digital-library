@@ -8,7 +8,7 @@ data class DomainBook(
     val title: String,
     val author: String,
     val barcode: String,
-    val rate : Int,
+    val rate: Int,
     val preview: String,
     val counter: BigDecimal?,
     val isVacant: Boolean,

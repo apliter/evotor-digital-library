@@ -6,10 +6,9 @@ import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import ru.apliter.data.api.RetrofitClientImpl
 import ru.apliter.data.common.BookConverter
 import ru.apliter.data.entities.DataBook
-import ru.apliter.data.repositories.BookRepositoryImpl
+import ru.apliter.domain.repositories.BookRepository
 import ru.evotor.devices.commons.DeviceServiceConnector
 import ru.evotor.devices.commons.printer.PrinterDocument
 import ru.evotor.devices.commons.printer.printable.PrintableBarcode
@@ -18,9 +17,9 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class MainViewModel : ViewModel() {
-
-    private val bookRepository = BookRepositoryImpl(RetrofitClientImpl().getBookApi())
+class MainViewModel(
+    private val bookRepository: BookRepository
+) : ViewModel() {
 
     private val bookListLiveData = MutableLiveData<List<DataBook>>()
     private val bookLiveData = MutableLiveData<DataBook>()

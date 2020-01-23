@@ -1,11 +1,8 @@
 package ru.apliter.evotor_digital_library.ui.main
 
-import android.content.ContentValues.TAG
 import android.content.Context
-import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +15,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.book_list_fragment.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.apliter.evotor_digital_library.R
 import ru.apliter.evotor_digital_library.ui.rv.BookAdapter
 import ru.evotor.framework.device.scanner.event.BarcodeReceivedEvent
@@ -28,9 +26,10 @@ import java.util.*
 class BookListFragment : Fragment() {
 
     private lateinit var bookAdapter: BookAdapter
-    private lateinit var viewModel: MainViewModel
     private lateinit var rootView: View
     private lateinit var barcodeScanReceiver: BarcodeScanReceiver
+
+    private val viewModel by viewModel<MainViewModel>()
 
     companion object {
         fun newInstance() = BookListFragment()
@@ -89,9 +88,8 @@ class BookListFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         viewModel.startGettingBookList()
-        observeViewModel(viewModel, this)
+        observeViewModel(viewModel, viewLifecycleOwner)
         searchView.setOnQueryTextListener(getSearchViewListener())
         searchView.setOnCloseListener(getCloseBtnListener())
         main.requestFocus()
@@ -113,7 +111,12 @@ class BookListFragment : Fragment() {
         super.onResume()
         viewModel.startGettingBookList()
         val intentFilter = IntentFilter(ScannerBroadcastReceiver.ACTION_BARCODE_RECEIVED)
-        activity?.registerReceiver(barcodeScanReceiver,intentFilter,ScannerBroadcastReceiver.SENDER_PERMISSION,null)
+        activity?.registerReceiver(
+            barcodeScanReceiver,
+            intentFilter,
+            ScannerBroadcastReceiver.SENDER_PERMISSION,
+            null
+        )
         main.requestFocus()
     }
 
@@ -135,7 +138,11 @@ class BookListFragment : Fragment() {
             })
         viewModel.getBooksListErrorObservable()
             .observe(lifeCycleOwner, Observer {
-                Snackbar.make(rootView,it.localizedMessage,Snackbar.LENGTH_LONG).show()
+                Snackbar.make(
+                    rootView,
+                    getString(R.string.error_message, it::class.java, it.cause?.message),
+                    Snackbar.LENGTH_LONG
+                ).show()
             })
     }
 
@@ -159,7 +166,8 @@ class BookListFragment : Fragment() {
         }
     }
 
-    class BarcodeScanReceiver(private val bookListFragment: BookListFragment): ScannerBroadcastReceiver() {
+    class BarcodeScanReceiver(private val bookListFragment: BookListFragment) :
+        ScannerBroadcastReceiver() {
         override fun handleBarcodeReceivedEvent(context: Context, event: BarcodeReceivedEvent) {
             val viewModel = ViewModelProviders.of(bookListFragment).get(MainViewModel::class.java)
             val book = viewModel.getBookByBarcode(event.barcode)

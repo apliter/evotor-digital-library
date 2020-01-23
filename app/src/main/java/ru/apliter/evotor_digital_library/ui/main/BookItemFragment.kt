@@ -7,16 +7,18 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.book_fragment.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.apliter.evotor_digital_library.R
 import java.text.SimpleDateFormat
 import java.util.*
 
 class BookItemFragment : Fragment() {
-    private lateinit var viewModel: MainViewModel
+
+    private val viewModel1 by viewModel<MainViewModel>()
+
     private lateinit var rootView: View
     private var bookId: String? = null
 
@@ -32,12 +34,11 @@ class BookItemFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        observeViewModel(viewModel, this)
+        observeViewModel(viewModel1, viewLifecycleOwner)
         bookId = arguments?.getString("BOOK_ID")
 
         bookId?.let {
-            viewModel.startGettingBook(it)
+            viewModel1.startGettingBook(it)
         } ?: run {
             activity?.onBackPressed()
         }

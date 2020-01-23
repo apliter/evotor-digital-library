@@ -3,8 +3,8 @@ package ru.apliter.evotor_digital_library.ui.rv
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.extensions.LayoutContainer
-import ru.apliter.data.entities.DataBook
 import kotlinx.android.synthetic.main.item_book.view.*
+import ru.apliter.data.entities.DataBook
 
 class BookViewHolder(override val containerView: View) :
     RecyclerView.ViewHolder(containerView),

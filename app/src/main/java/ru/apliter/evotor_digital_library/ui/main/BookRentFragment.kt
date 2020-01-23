@@ -6,25 +6,24 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import io.reactivex.Single
 import kotlinx.android.synthetic.main.book_rent_fragment.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.apliter.data.entities.DataBook
 import ru.apliter.evotor_digital_library.R
-import ru.apliter.evotor_digital_library.R.drawable.*
+import ru.apliter.evotor_digital_library.R.drawable.ic_error
 import ru.apliter.evotor_digital_library.R.string.*
 import ru.evotor.devices.commons.DeviceServiceConnector
 import java.util.concurrent.TimeUnit
 
 class BookRentFragment : Fragment(R.layout.book_rent_fragment) {
-    private lateinit var viewModel: MainViewModel
+    private val viewModel by viewModel<MainViewModel>()
     private lateinit var book: DataBook
     private var bookId: String? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        observeViewModel(viewModel, this)
+        observeViewModel(viewModel, viewLifecycleOwner)
         bookId = arguments?.getString("BOOK_ID")
         bookId?.let {
             label_rent_status.text = getString(get_book_request)

@@ -1,7 +1,6 @@
 apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
 
 android {
@@ -24,6 +23,7 @@ android {
     }
 }
 
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project (':data')
@@ -38,6 +38,10 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0'
 
     implementation 'com.google.android.material:material:1.0.0'
+
+    implementation 'org.koin:koin-core:2.0.1'
+    implementation 'org.koin:koin-androidx-scope:2.0.1'
+    implementation 'org.koin:koin-androidx-viewmodel:2.0.1'
 
     //noinspection GradleDynamicVersion
     implementation group: 'com.github.evotor', name: 'integration-library', version: 'v0.4.+'
